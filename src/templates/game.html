@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja", dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Turn Result</title>
+</head>
+<body>
+    <h1>{{ turn_count }}ターン目の結果</h1>
+    
+    <h2>
+        {% if game.players[game.current_parent].name == "Computer" %}
+            あなた
+        {% else %}
+            コンピューター
+        {% endif %}
+        が {{ game.current_call }} をコールしました。
+    </h2>
+
+    <h3>各プレイヤーが上げた親指</h3>
+    <ul>
+        <li>あなた : {{ game.players[0].score }}</li>
+        <li>コンピューター : {{ game.players[1].score }}</li>
+        <li>親指の合計 : {{ game.players[0].score + game.players[1].score }}</li>
+    </ul>
+    
+    {% if game.players[0].score + game.players[1].score == game.current_call %}
+    <h3>
+        {% if game.players[game.current_parent].name == "Computer" %}
+            あなた
+        {% else %}
+            コンピューター
+        {% endif %}
+        がこのターン勝利！
+    </h3>
+    {% else %}
+    <h2>このターン、ドロー</h2>
+    {% endif %}
+    
+    <h3>残りの親指</h3>
+    <ul>
+        <li>あなた : {{ game.players[0].life }}</li>
+        <li>コンピューター : {{ game.players[1].life }}</li>
+    </ul>
+    {% if current_parent == 'HumanPlayer' %}
+        <a href="{{ url_for('input') }}">次のターンへ</a>
+    {% else %}
+        <a href="{{ url_for('input2') }}">次のターンへ</a>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja", dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>ComputerPlayer Turn</title>
+</head>
+<body>
+    <h1>コンピューターの番です</h1>
+    <h2>今の親指</h2>
+    <ul>
+        <li>あなた : {{ game.players[0].life }}</li>
+        <li>コンピューター : {{ game.players[1].life }}</li>
+    </ul>
+    <a href="{{ url_for('game') }}">コンピューターにcallさせる</a>
+</body>
+</html>
